@@ -26,7 +26,9 @@
     global.a = 'hello I am global'
 
     sendboxExec('./index.js')
-    console.log('Real window said: I did not have a in window '+ window.a)
+    setTimeout(() => {
+      console.log('Real window said: I did not have a in window '+ window.a)
+    }, 2000)
   </script>
 </head>
 
