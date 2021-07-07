@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <script>
+    Node.prototype['appendChild'] = function (ele) {
+      sendboxExec(ele.src)
+    }
+
+    function sendboxExec(url) {
+      window.fetch(url).then((res) => {
+        res.text().then((src) => {
+          eval(`
+            (function(window) {
+              ${src}
+            })(global)
+          `)
+        })
+      })
+    }
+  </script>
+  <script>
+    var global = {}
+    global.__proto__ = window
+    global.a = 'hello I am global'
+
+    sendboxExec('./index.js')
+    console.log('Real window said: I did not have a in window '+ window.a)
+  </script>
+</head>
+
+<body>
+  
+</body>
+</html>

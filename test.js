@@ -1,0 +1,1 @@
+console.log('Sendbox: I am second script: ' + window.a)
