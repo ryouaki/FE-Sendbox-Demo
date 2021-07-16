@@ -7,10 +7,8 @@ const src = `
   }
 `
 
-
-
 const r = new Function('global', `
-  global.func = ${src}
+  return ${src.replace('\n', '')}
 `)
 
-console.log(r.toString(), r(global), global.func())
+console.log(r.toString(), r(global)(), r({})())
